@@ -97,7 +97,7 @@ exports.permissionExceptions = {
 	'say': '#',
 	'info': '+',
 	'wall': '%',
-	'autoban': '#',
+	'autoban': '~',
 	'banword': '#',
 	'joinphrase': '#',
 	'challenge': '%',
