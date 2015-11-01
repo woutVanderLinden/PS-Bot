@@ -153,7 +153,7 @@ function parseChat (room, time, by, message) {
 	var user = toId(by);
 	if (Tools.equalOrHigherRank(by, getModException(room))) return;
 	var ban = isBanned(room, by);
-	if (ban) Bot.say(room, '/roomban ' + by + ', ' + trad('ab', room) + ((ban === '#range') ? ' (RegExp)' : ''));
+	if (ban) Bot.say(room, '/ban ' + by + ', ' + trad('ab', room) + ((ban === '#range') ? ' (RegExp)' : ''));
 
 	/* Chat Logs */
 
