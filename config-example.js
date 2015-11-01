@@ -11,11 +11,11 @@
 *
 */
 
-exports.server = 'localhost';
+exports.server = 'cbc.pokecommunity.com';
 
 exports.port = 8000;
 
-exports.serverid = 'localhost';
+exports.serverid = 'pokecommunity';
 
 exports.autoReconnectDelay = 10 * 1000;
 exports.connectionTimeout = 2 * 60 * 1000;
@@ -38,9 +38,9 @@ exports.watchconfig = true;
 * Login Details
 */
 
-exports.nick = '';
+exports.nick = 'PokeCommBot';
 
-exports.pass = '';
+exports.pass = 'filler';
 
 exports.autoReloginDelay = 60 * 1000;
 
@@ -48,7 +48,7 @@ exports.autoReloginDelay = 60 * 1000;
 * Rooms to join
 */
 
-exports.rooms = ['lobby'];
+exports.rooms = ['lobby', 'worldofpc', 'darkalley', 'spanish', 'french', 'portuguese', 'hindi'];
 /*
 * exports.rooms = 'all'; //For joining all rooms
 * exports.rooms = 'official'; //For joining official rooms
@@ -57,14 +57,14 @@ exports.rooms = ['lobby'];
 */
 
 exports.privateRooms = { //Rooms listed here will be ignored by seen command
-	//privateroomname: true
+	staff: true
 };
 
 exports.ignoreRooms = { //Rooms listed here will be ignored by CommandParser (bot is "asleep" in those rooms)
 	//roomid: true
 };
 
-exports.initCmds = ['|/avatar 120']; // Other commands (avatar, blockchallenges, etc)
+exports.initCmds = []; // Other commands (avatar, blockchallenges, etc)
 
 /*
 * Auth configuration
@@ -74,7 +74,7 @@ exports.exceptions = {
 	//userid: 'rank' or userid: true for full access
 };
 
-exports.ranks = ['+', '\u2605', '%', '@', '#', '&', '~'];
+exports.ranks = ['\u2605', '+', '=', '%', '@', '-', '#', '&', '~'];
 
 exports.globalPermissions = {
 	'voice': '+', //Min rank to broadcast in a server
