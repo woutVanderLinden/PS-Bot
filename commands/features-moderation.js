@@ -70,16 +70,10 @@ exports.commands = {
 	blacklist: 'autoban',
 	ban: 'autoban',
 	ab: 'autoban',
-	autoban: function (arg, by, room, cmd) {
+	autoban: function (arg, by, cmd) {
 		if (!this.can('autoban')) return;
-		var tarRoom = room;
-		var targetObj = Tools.getTargetRoom(arg);
+		var tarRoom = 'lobby';
 		var textHelper = '';
-		if (targetObj && this.isExcepted) {
-			arg = targetObj.arg;
-			tarRoom = targetObj.room;
-			textHelper = ' (' + tarRoom + ')';
-		}
 		if (!Bot.rooms[tarRoom] || Bot.rooms[tarRoom].type !== 'chat') return this.reply(this.trad('notchat') + textHelper);
 		if (!this.isExcepted && !this.botRanked(Tools.getGroup('moderator'))) return this.reply(this.botName + " " + this.trad('notmod').replace('@', Tools.getGroup('moderator')));
 
@@ -121,16 +115,10 @@ exports.commands = {
 	unblacklist: 'unautoban',
 	unban: 'unautoban',
 	unab: 'unautoban',
-	unautoban: function (arg, by, room, cmd) {
+	unautoban: function (arg, by, cmd) {
 		if (!this.can('autoban')) return;
-		var tarRoom = room;
-		var targetObj = Tools.getTargetRoom(arg);
+		var tarRoom = 'lobby';
 		var textHelper = '';
-		if (targetObj && this.isExcepted) {
-			arg = targetObj.arg;
-			tarRoom = targetObj.room;
-			textHelper = ' (' + tarRoom + ')';
-		}
 		if (!Bot.rooms[tarRoom] || Bot.rooms[tarRoom].type !== 'chat') return this.reply(this.trad('notchat') + textHelper);
 		if (!this.isExcepted && !this.botRanked(Tools.getGroup('moderator'))) return this.reply(this.botName + " " + this.trad('notmod').replace('@', Tools.getGroup('moderator')));
 
@@ -165,16 +153,10 @@ exports.commands = {
 	},
 
 	rab: 'regexautoban',
-	regexautoban: function (arg, user, room) {
+	regexautoban: function (arg, user) {
 		if (!this.can('autoban')) return;
-		var tarRoom = room;
-		var targetObj = Tools.getTargetRoom(arg);
+		var tarRoom = 'lobby';
 		var textHelper = '';
-		if (targetObj && this.isExcepted) {
-			arg = targetObj.arg;
-			tarRoom = targetObj.room;
-			textHelper = ' (' + tarRoom + ')';
-		}
 		if (!Bot.rooms[tarRoom] || Bot.rooms[tarRoom].type !== 'chat') return this.reply(this.trad('notchat') + textHelper);
 		if (!this.isExcepted && !this.botRanked(Tools.getGroup('moderator'))) return this.reply(Bot.status.nickName + " " + this.trad('notmod').replace('@', Tools.getGroup('moderator')));
 
@@ -198,16 +180,10 @@ exports.commands = {
 	},
 
 	unrab: 'unregexautoban',
-	unregexautoban: function (arg, user, room) {
+	unregexautoban: function (arg, user) {
 		if (!this.can('autoban')) return;
-		var tarRoom = room;
-		var targetObj = Tools.getTargetRoom(arg);
+		var tarRoom = 'lobby';
 		var textHelper = '';
-		if (targetObj && this.isExcepted) {
-			arg = targetObj.arg;
-			tarRoom = targetObj.room;
-			textHelper = ' (' + tarRoom + ')';
-		}
 		if (!Bot.rooms[tarRoom] || Bot.rooms[tarRoom].type !== 'chat') return this.reply(this.trad('notchat') + textHelper);
 		if (!this.isExcepted && !this.botRanked(Tools.getGroup('moderator'))) return this.reply(Bot.status.nickName + " " + this.trad('notmod').replace('@', Tools.getGroup('moderator')));
 
