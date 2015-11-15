@@ -20,19 +20,18 @@ function unblacklistUser(user, room) {
 	return false;
 }
 
-function blacklistGlobal(user, room) {
-	if (!Settings.settings['gautoban'] || !Settings.settings['gautoban'][room] || !Settings.settings['gautoban'][room][user]) {
+function blacklistGlobal(user) {
+	if (!Settings.settings['gautoban'] || !Settings.settings['gautoban'][user]) {
 		if (!Settings.settings['gautoban']) Settings.settings['gautoban'] = {};
-		if (!Settings.settings['gautoban'][room]) Settings.settings['gautoban'][room] = {};
-		Settings.settings['gautoban'][room][user] = 1;
+		Settings.settings['gautoban'][user] = 1;
 		return true;
 	}
 	return false;
 }
 
-function unblacklistGlobal(user, room) {
-	if (Settings.settings['gautoban'] && Settings.settings['gautoban'][room] && Settings.settings['gautoban'][room][user]) {
-		delete Settings.settings['gautoban'][room][user];
+function unblacklistGlobal(user) {
+	if (Settings.settings['gautoban'] && Settings.settings['gautoban'][user]) {
+		delete Settings.settings['gautoban'][user];
 		return true;
 	}
 	return false;
@@ -78,19 +77,18 @@ function unblacklistRegex(regex, room) {
 	return false;
 }
 
-function blacklistGlobalRegex(regex, room) {
-	if (!Settings.settings['regexgautoban'] || !Settings.settings['regexgautoban'][room] || !Settings.settings['regexgautoban'][room][regex]) {
+function blacklistGlobalRegex(regex) {
+	if (!Settings.settings['regexgautoban'] || !Settings.settings['regexgautoban'][regex]) {
 		if (!Settings.settings['regexgautoban']) Settings.settings['regexgautoban'] = {};
-		if (!Settings.settings['regexgautoban'][room]) Settings.settings['regexgautoban'][room] = {};
-		Settings.settings['regexgautoban'][room][regex] = 1;
+		Settings.settings['regexgautoban'][regex] = 1;
 		return true;
 	}
 	return false;
 }
 
-function unblacklistGlobalRegex(regex, room) {
-	if (Settings.settings['regexgautoban'] && Settings.settings['regexgautoban'][room] && Settings.settings['regexgautoban'][room][regex]) {
-		delete Settings.settings['regexgautoban'][room][regex];
+function unblacklistGlobalRegex(regex) {
+	if (Settings.settings['regexgautoban'] && Settings.settings['regexgautoban'][regex]) {
+		delete Settings.settings['regexgautoban'][regex];
 		return true;
 	}
 	return false;
@@ -347,7 +345,7 @@ exports.commands = {
 				illegalNick.push(tarUser);
 				continue;
 			}
-			if (!blacklistUser(tarUser, tarRoom)) {
+			if (!blacklistGlobal(tarUser)) {
 				alreadyAdded.push(tarUser);
 				continue;
 			}
@@ -400,7 +398,7 @@ exports.commands = {
 				notRemoved.push(tarUser);
 				continue;
 			}
-			if (!unblacklistUser(tarUser, tarRoom)) {
+			if (!unblacklistGlobal(tarUser)) {
 				notRemoved.push(tarUser);
 				continue;
 			}
@@ -444,7 +442,7 @@ exports.commands = {
 		}
 
 		var regex = '/' + arg + '/i';
-		if (!blacklistRegex(regex, tarRoom)) return this.reply('/' + regex + '/ ' + this.trad('already'));
+		if (!blacklistGlobalRegex(regex)) return this.reply('/' + regex + '/ ' + this.trad('already'));
 		Settings.save();
 		if (!Config.moderation || !Config.moderation.disableModNote) this.say(tarRoom, '/modnote ' + this.trad('re') + ' ' + regex + ' ' + this.trad('addby') + ' ' + user + '.');
 		this.reply(this.trad('re') + ' ' + regex + ' ' + this.trad('add'));
@@ -467,7 +465,7 @@ exports.commands = {
 		if (!arg) return this.reply(this.trad('notarg'));
 
 		arg = '/' + arg.replace(/\\\\/g, '\\') + '/i';
-		if (!unblacklistRegex(arg, tarRoom)) return this.reply(this.trad('re') + ' ' + arg + ' ' + this.trad('notpresent'));
+		if (!unblacklistGlobalRegex(arg)) return this.reply(this.trad('re') + ' ' + arg + ' ' + this.trad('notpresent'));
 
 		Settings.save();
 		if (!Config.moderation || !Config.moderation.disableModNote) this.say(tarRoom, '/modnote ' + this.trad('re') + ' ' + arg + ' ' + this.trad('rby') + ' ' + user + '.');
@@ -496,29 +494,29 @@ exports.commands = {
 		var nBans = 0;
 
 		if (arg.length) {
-			if (Settings.settings['gautoban'] && Settings.settings['gautoban'][tarRoom]) {
+			if (Settings.settings['gautoban']) {
 				var nick = toId(arg);
 				if (nick.length < 1 || nick.length > 18) {
 					return this.pmReply(this.trad('iu') + ': "' + nick + '".');
 				} else {
-					return this.pmReply(this.trad('u') + ' "' + nick + '" ' + this.trad('currently') + ' ' + (nick in Settings.settings['gautoban'][tarRoom] ? '' : (this.trad('not') + ' ')) + this.trad('b') + ' ' + tarRoom + '.');
+					return this.pmReply(this.trad('u') + ' "' + nick + '" ' + this.trad('currently') + ' ' + (nick in Settings.settings['gautoban'] ? '' : (this.trad('not') + ' ')) + this.trad('b') + ' ' + tarRoom + '.');
 				}
 			} else {
 				return this.pmReply(this.trad('nousers') + ' ' + tarRoom);
 			}
 		}
 
-		if (Settings.settings['gautoban'] && Settings.settings['gautoban'][tarRoom]) {
+		if (Settings.settings['gautoban']) {
 			text += this.trad('listab') + ' ' + tarRoom + ':\n\n';
-			for (var i in Settings.settings['gautoban'][tarRoom]) {
+			for (var i in Settings.settings['gautoban']) {
 				text += i + "\n";
 				nBans++;
 			}
 		}
 
-		if (Settings.settings['regexgautoban'] && Settings.settings['regexgautoban'][tarRoom]) {
+		if (Settings.settings['regexgautoban']) {
 			text += '\n' + this.trad('listrab') + ' ' + tarRoom + ':\n\n';
-			for (var i in Settings.settings['regexgautoban'][tarRoom]) {
+			for (var i in Settings.settings['regexgautoban']) {
 				text += i + "\n";
 				nBans++;
 			}
