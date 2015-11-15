@@ -20,23 +20,6 @@ function unblacklistUser(user, room) {
 	return false;
 }
 
-function blacklistGlobal(user) {
-	if (!Settings.settings['gautoban'] || !Settings.settings['gautoban'][user]) {
-		if (!Settings.settings['gautoban']) Settings.settings['gautoban'] = {};
-		Settings.settings['gautoban'][user] = 1;
-		return true;
-	}
-	return false;
-}
-
-function unblacklistGlobal(user) {
-	if (Settings.settings['gautoban'] && Settings.settings['gautoban'][user]) {
-		delete Settings.settings['gautoban'][user];
-		return true;
-	}
-	return false;
-}
-
 function addZeroTolUser(user, level) {
 	if (!Settings.settings['zerotol'] || Settings.settings['zerotol'][user] !== level) {
 		if (!Settings.settings['zerotol']) Settings.settings['zerotol'] = {};
@@ -72,6 +55,23 @@ function blacklistRegex(regex, room) {
 function unblacklistRegex(regex, room) {
 	if (Settings.settings['regexautoban'] && Settings.settings['regexautoban'][room] && Settings.settings['regexautoban'][room][regex]) {
 		delete Settings.settings['regexautoban'][room][regex];
+		return true;
+	}
+	return false;
+}
+
+function blacklistGlobal(user) {
+	if (!Settings.settings['gautoban'] || !Settings.settings['gautoban'][user]) {
+		if (!Settings.settings['gautoban']) Settings.settings['gautoban'] = {};
+		Settings.settings['gautoban'][user] = 1;
+		return true;
+	}
+	return false;
+}
+
+function unblacklistGlobal(user) {
+	if (Settings.settings['gautoban'] && Settings.settings['gautoban'][user]) {
+		delete Settings.settings['gautoban'][user];
 		return true;
 	}
 	return false;
