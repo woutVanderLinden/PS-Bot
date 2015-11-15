@@ -103,9 +103,9 @@ function isBanned (room, user, noregexp) {
 
 function isGlobalBanned (room, user, noregexp) {
 	user = toId(user);
-	if (Settings.settings['globalautoban'] && Settings.settings['globalautoban'][room] && Settings.settings['globalautoban'][room][user]) return true;
-	if (!noregexp && Settings.settings['regexglobalautoban'] && Settings.settings['regexglobalautoban'][room]) {
-		for (var i in Settings.settings['regexglobalautoban'][room]) {
+	if (Settings.settings['gautoban'] && Settings.settings['gautoban'][room] && Settings.settings['gautoban'][room][user]) return true;
+	if (!noregexp && Settings.settings['regexgautoban'] && Settings.settings['regexgautoban'][room]) {
+		for (var i in Settings.settings['regexgautoban'][room]) {
 			try {
 				var regexObj = new RegExp(i.substr(1, i.length - 3), 'i');
 				if (regexObj.test(user)) return '#range';
