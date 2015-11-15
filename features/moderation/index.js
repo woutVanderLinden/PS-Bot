@@ -101,11 +101,11 @@ function isBanned (room, user, noregexp) {
 	return false;
 }
 
-function isGlobalBanned (room, user, noregexp) {
+function isGlobalBanned (user, noregexp) {
 	user = toId(user);
-	if (Settings.settings['gautoban'] && Settings.settings['gautoban'][room] && Settings.settings['gautoban'][room][user]) return true;
-	if (!noregexp && Settings.settings['regexgautoban'] && Settings.settings['regexgautoban'][room]) {
-		for (var i in Settings.settings['regexgautoban'][room]) {
+	if (Settings.settings['gautoban'] && Settings.settings['gautoban'][user]) return true;
+	if (!noregexp && Settings.settings['regexgautoban']) {
+		for (var i in Settings.settings['regexgautoban']) {
 			try {
 				var regexObj = new RegExp(i.substr(1, i.length - 3), 'i');
 				if (regexObj.test(user)) return '#range';
@@ -168,7 +168,7 @@ function parseChat (room, time, by, message) {
 	if (Tools.equalOrHigherRank(by, getModException(room))) return;
 	var ban = isBanned(room, by);
 	if (ban) Bot.say(room, '/roomban ' + by + ', ' + trad('ab', room) + ((ban === '#range') ? ' (RegExp)' : ''));
-	var globalBan = isGlobalBanned(room, by);
+	var globalBan = isGlobalBanned(by);
 	if (globalBan) Bot.say(room, '/ban ' + by + ', ' + trad('ab', room) + ((ban === '#range') ? ' (RegExp)' : ''));
 
 	/* Chat Logs */
@@ -452,7 +452,7 @@ function parseJoin (room, by) {
 	if (Tools.equalOrHigherRank(by, Config.moderation.modException)) return;
 	var ban = isBanned(room, by);
 	if (ban) Bot.say(room, '/roomban ' + by + ', ' + trad('ab', room) + ((ban === '#range') ? ' (RegExp)' : ''));
-	var globalBan = isGlobalBanned(room, by);
+	var globalBan = isGlobalBanned(by);
 	if (globalBan) Bot.say(room, '/ban ' + by + ', ' + trad('ab', room) + ((ban === '#range') ? ' (RegExp)' : ''));
 }
 
@@ -464,7 +464,7 @@ function parseRename (room, by, old) {
 	if (Tools.equalOrHigherRank(by, Config.moderation.modException)) return;
 	var ban = isBanned(room, by);
 	if (ban) Bot.say(room, '/roomban ' + by + ', ' + trad('ab', room) + ((ban === '#range') ? ' (RegExp)' : ''));
-	var globalBan = isGlobalBanned(room, by);
+	var globalBan = isGlobalBanned(by);
 	if (globalBan) Bot.say(room, '/ban ' + by + ', ' + trad('ab', room) + ((ban === '#range') ? ' (RegExp)' : ''));
 }
 
