@@ -1,4 +1,4 @@
-/*
+﻿/*
 	config.js - Configuration File
 */
 
@@ -7,7 +7,7 @@
 *
 * NOTE: Do NOT use "[server].psim.us", that is the client url
 * If you don't know what are the server, port or serverid values
-* run 'node serverconfig.js' to get them
+* run 'node getserver.js' to get them
 *
 */
 
@@ -73,6 +73,17 @@ exports.initCmds = []; // Other commands (avatar, blockchallenges, etc)
 exports.exceptions = {
 	wolf: true
 };
+
+/*
+* 'userid': 'rank' or 'userid': true for full access
+* Example:
+
+exports.exceptions = {
+	'ecuacion': true,
+	'excepted': true
+};
+
+*/
 
 exports.ranks = ['\u2605', '+', '=', '%', '@', '-', '#', '&', '~'];
 
@@ -236,15 +247,14 @@ exports.aceptAll = false;
 
 exports.maxBattles = 1;
 
+exports.initBattleMsg = ['gl hf'];
+
 exports.winmsg = ['GG', 'g_g'];
 
 exports.losemsg = ['gg', 'wp'];
 
 exports.battleMessages = {
 	/* Examples of battle messages:
-	'tier': {
-		'self': [] //Example: ['gl hf', 'Hi, I\'m a Bot', 'gl']
-	},
 	'-crit': {
 		'self': [], //Example: ['lol that hax', 'stop haxing pls']
 		'foe': [] //Example: ['sorry', 'wow sorry for that', 'get critted']
@@ -254,6 +264,8 @@ exports.battleMessages = {
 	}
 	*/
 };
+
+exports.abandonedBattleAutojoin = true;
 
 exports.ladderCheckInterval = 10 * 1000;
 
@@ -288,6 +300,17 @@ exports.tourDefault = {
 	autodq: 1.5,
 	scoutProtect: false
 };
+
+exports.leaderboards = {};
+
+/* Leaderboard example:
+exports.leaderboards['tournaments'] = {
+	winnerPoints: 5,
+	finalistPoints: 3,
+	semiFinalistPoints: 1,
+	battlePoints: 0
+};
+*/
 
 /*
 * Youtube
