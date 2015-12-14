@@ -48,7 +48,7 @@ exports.autoReloginDelay = 60 * 1000;
 * Rooms to join
 */
 
-exports.rooms = ['lobby', 'worldofpc', 'mariokart', 'darkalley', 'franais', 'johtoleagueshowdown', 'kamehouse'];
+exports.rooms = ['lobby', 'worldofpc', 'mariokart', 'darkalley', 'johtoleagueshowdown', 'kamehouse', 'trl'];
 /*
 * exports.rooms = 'all'; //For joining all rooms
 * exports.rooms = 'official'; //For joining official rooms
@@ -105,17 +105,17 @@ exports.defaultPermission = '%';
 
 exports.permissionExceptions = {
 	//command: 'rank'
-	'say': '#',
+	'say': '&',
 	'info': '+',
 	'wall': '%',
-	'autoban': '#',
+	'autoban': '&',
 	'gautoban': '~',
-	'banword': '#',
-	'joinphrase': '#',
+	'banword': '&',
+	'joinphrase': '&',
 	'challenge': '%',
 	'searchbattle': '~',
 	'tournament': '@',
-	'games': '#'
+	'games': '&'
 };
 
 exports.botguide = "http://www.pokecommunity.com/showthread.php?t=289012#botguide";
