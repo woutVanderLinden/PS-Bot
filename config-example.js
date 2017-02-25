@@ -54,7 +54,7 @@ exports.autoReloginDelay = 60 * 1000;
 * Rooms to join
 */
 
-exports.rooms = ['lobby', 'worldofpc', 'mariokart', 'darkalley', 'johtoleagueshowdown', 'kamehouse', 'trl'];
+exports.rooms = ['lobby', 'theshowdowninterviews', 'darkalley', 'kamehouse', 'trl', 'japanese', 'pokmonphoenixrisingmetagame', 'johtoleagueshowdown', , 'pcplayspokkn', 'franais', 'hug', 'portuguese', 'trivia'];
 
 /*
 * exports.rooms = 'all'; //For joining all rooms
@@ -92,7 +92,7 @@ exports.exceptions = {
 *
 */
 
-exports.ranks = ['\u2605', '+', '=', '%', '@', '-', '#', '&', '~'];
+exports.ranks = ['\u2605', '+', '=', '%', '@', '*', '-', '&', '#', '~'];
 
 exports.globalPermissions = {
 	'voice': '+', //Min rank to broadcast in a server
