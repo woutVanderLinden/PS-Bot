@@ -18,7 +18,7 @@ exports.port = 8000;
 exports.serverid = 'pokecommunity';
 
 exports.autoReconnectDelay = 10 * 1000;
-exports.connectionTimeout = 2 * 60 * 1000;
+exports.connectionTimeout = 14 * 24 * 60 * 60 * 1000;
 
 /*
 * Crash Guard
