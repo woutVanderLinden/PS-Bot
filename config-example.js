@@ -11,11 +11,11 @@
 *
 */
 
-exports.server = 'localhost';
+exports.server = 'cbc.pokecommunity.com';
 
 exports.port = 8000;
 
-exports.serverid = 'localhost';
+exports.serverid = 'pokecommunity';
 
 exports.autoReconnectDelay = 10 * 1000;
 exports.connectionTimeout = 2 * 60 * 1000;
@@ -44,9 +44,9 @@ exports.watchconfig = true;
 * Login Details
 */
 
-exports.nick = '';
+exports.nick = 'PokeCommBot';
 
-exports.pass = '';
+exports.pass = 'filler';
 
 exports.autoReloginDelay = 60 * 1000;
 
@@ -54,7 +54,7 @@ exports.autoReloginDelay = 60 * 1000;
 * Rooms to join
 */
 
-exports.rooms = ['lobby'];
+exports.rooms = ['lobby', 'theshowdowninterviews', 'darkalley', 'kamehouse', 'trl', 'japanese', 'pokmonphoenixrisingmetagame', 'johtoleagueshowdown', , 'pcplayspokkn', 'franais', 'hug', 'portuguese', 'trivia'];
 
 /*
 * exports.rooms = 'all'; //For joining all rooms
@@ -64,7 +64,7 @@ exports.rooms = ['lobby'];
 */
 
 exports.privateRooms = { //Rooms listed here will be ignored by seen command
-	//privateroomname: true
+	staff: true
 };
 
 exports.ignoreRooms = { //Rooms listed here will be ignored by CommandParser (bot is "asleep" in those rooms)
@@ -78,7 +78,7 @@ exports.initCmds = ['|/avatar 120']; // Other commands (avatar, blockchallenges,
 */
 
 exports.exceptions = {
-	// 'userid': true
+	wolf: true
 };
 
 /*
@@ -92,7 +92,7 @@ exports.exceptions = {
 *
 */
 
-exports.ranks = ['+', '\u2605', '%', '@', '*', '#', '&', '~'];
+exports.ranks = ['\u2605', '+', '=', '%', '@', '*', '-', '&', '#', '~'];
 
 exports.globalPermissions = {
 	'voice': '+', //Min rank to broadcast in a server
@@ -108,23 +108,24 @@ exports.globalPermissions = {
 
 exports.commandTokens = ['.']; //Array of valid command characters
 
-exports.defaultPermission = '%';
+exports.defaultPermission = '+';
 
 exports.permissionExceptions = {
 	//command: 'rank'
 	'say': '#',
 	'info': '+',
 	'wall': '%',
-	'autoban': '#',
-	'banword': '#',
-	'joinphrase': '#',
+	'autoban': '@',
+	'banword': '@',
+	'joinphrase': '@',
 	'challenge': '%',
-	'searchbattle': '~',
+	'searchbattle': '@',
 	'tournament': '@',
-	'games': '#'
+	'games': '+',
+	'jointour': '+',
 };
 
-exports.botguide = "https://github.com/Ecuacion/Pokemon-Showdown-Node-Bot/blob/master/commands/README.md";
+exports.botguide = "https://github.com/awolffromspace/PC-Battle-Server/blob/master/bot/commands/README.md";
 
 //When you pm the bot but don't use a command, it replies you this message. Example: "Hi, I'm a bot. Use .help to view a command guide"
 //The var #USER is replaced with the username that pms it
@@ -172,7 +173,7 @@ exports.debug = {
 */
 
 exports.moderation = {
-	modException: '%', // Min rank for not receive moderation
+	modException: '+', // Min rank for not receive moderation
 
 	allowmute: true,
 	disableModNote: false,
@@ -185,8 +186,8 @@ exports.moderation = {
 		MIN_CAPS_LENGTH: 18,
 		MIN_CAPS_PROPORTION: 0.8,
 
-		MAX_STRETCH: 7,
-		MAX_REPEAT: 4
+		MAX_STRETCH: 40,
+		MAX_REPEAT: 20
 	},
 
 	values: {
@@ -207,7 +208,7 @@ exports.moderation = {
 
 	modDefault: {
 		//basic mods
-		'caps': 1,
+		'caps': 0,
 		'stretching': 1,
 		'flooding': 1,
 		'spam': 1,
@@ -218,7 +219,7 @@ exports.moderation = {
 		//specific mods
 		'spoiler': 0,
 		'youtube': 0,
-		'psservers': 0,
+		'psservers': 1,
 		'replays': 0,
 
 		//multiple infraction
@@ -336,7 +337,7 @@ exports.leaderboards['tournaments'] = {
 */
 
 exports.youtube = {
-	enableByDefault: false
+	enableByDefault: true
 };
 
 /*
