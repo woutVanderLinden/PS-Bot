@@ -113,7 +113,7 @@ exports.defaultPermission = '+';
 exports.permissionExceptions = {
 	//command: 'rank'
 	'say': '#',
-	'info': '+',
+	'info': ' ',
 	'wall': '%',
 	'autoban': '@',
 	'banword': '@',
@@ -123,6 +123,8 @@ exports.permissionExceptions = {
 	'tournament': '@',
 	'games': '+',
 	'jointour': '+',
+	'quote': ' ',
+	'joke': ' '
 };
 
 exports.botguide = "https://github.com/awolffromspace/PC-Battle-Server/blob/master/bot/commands/README.md";
