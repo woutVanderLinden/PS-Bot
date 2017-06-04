@@ -1,4 +1,4 @@
-﻿/*
+/*
 	config.js - Configuration File
 */
 
@@ -54,7 +54,7 @@ exports.autoReloginDelay = 60 * 1000;
 * Rooms to join
 */
 
-exports.rooms = ['lobby', 'theshowdowninterviews', 'darkalley', 'kamehouse', 'trl', 'japanese', 'pokmonphoenixrisingmetagame', 'johtoleagueshowdown', 'pcplayspokkn', 'franais', 'hug', 'portuguese', 'trivia'];
+exports.rooms = ['lobby', 'theshowdowninterviews', 'darkalley', 'kamehouse', 'trl', 'japanese', 'pokmonphoenixrisingmetagame', 'johtoleagueshowdown', 'pcplayspokkn', 'franais', 'hug', 'trivia', 'battledome', 'pokmonleague'];
 
 /*
 * exports.rooms = 'all'; //For joining all rooms
